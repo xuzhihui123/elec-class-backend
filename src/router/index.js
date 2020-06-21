@@ -36,136 +36,170 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-
   {
     path: '/404',
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    redirect: '/home',
   },
-
   {
-    path: '/example',
+    path: '/home',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: {title: '电子班牌', icon: 'example'},
+    redirect: '/home/itemClass',
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'itemClass',
+        name: '班牌分类',
+        component: () => import('@/views/itemClass/index'),
+        meta: {title: '班牌分类', icon: 'class'},
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'itemContent',
+        name: '班牌内容',
+        component: () => import('@/views/itemContent/index'),
+        meta: {title: '班牌内容', icon: 'content'}
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
+        path:'editItem/:id',
+        component: () => import('@/views/editItem/index'),
+        meta: {title: '编辑'},
+        hidden:true
+      },
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path:'addItem',
+        component:()=>import('@/views/addItem/index'),
+        meta: {title: '添加'},
+        hidden:true
+      },
+      {
+        path:'editContent/:id',
+        component:()=>import('@/views/editContent/index'),
+        meta: {title: '编辑内容'},
+        hidden:true
+      },
+      {
+        path:'curriManage',
+        name:'课程表管理',
+        component:()=>import('@/views/curriManage/index'),
+        meta: {title: '课程表管理',icon:'curri-icon'},
+      },
+      {
+        path:'schoolNotice',
+        name:'学校公告管理',
+        component:()=>import('@/views/schoolNotice/index'),
+        meta:{
+          title:'学校公告管理',
+          icon:'message'
+        }
+      },
+      {
+        path:'addSchoolNotice',
+        name:'添加学校公告',
+        component:()=>import('@/views/addSchoolNotice/index'),
+        meta:{
+          title:'添加学校公告'
+        },
+        hidden:true
+      },
+      {
+        path:'editSchoolNotice/:id',
+        name:'编辑学校公告',
+        component:()=>import('@/views/editSchoolNotice/index'),
+        meta:{
+          title:'编辑学校公告'
+        },
+        hidden:true
       }
+      // {
+      //   path:'countDown',
+      //   name:"倒计数配置",
+      //   component:()=>import('@/views/countDown/index'),
+      //   meta: {title: '倒计时配置',icon:'clock'},
+      // }
     ]
   },
+  // {
+  //   path: '/form',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Form',
+  //       component: () => import('@/views/form/index'),
+  //       meta: {title: 'Form', icon: 'form'}
+  //     }
+  //   ]
+  // },
 
+  // {
+  //   path: '/nested',
+  //   component: Layout,
+  //   redirect: '/nested/menu1',
+  //   name: 'Nested',
+  //   meta: {
+  //     title: 'Nested',
+  //     icon: 'nested'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'menu1',
+  //       component: () => import('@/views/nested/menu1/index'), // Parent router-view
+  //       name: 'Menu1',
+  //       meta: {title: 'Menu1'},
+  //       children: [
+  //         {
+  //           path: 'menu1-1',
+  //           component: () => import('@/views/nested/menu1/menu1-1'),
+  //           name: 'Menu1-1',
+  //           meta: {title: 'Menu1-1'}
+  //         },
+  //         {
+  //           path: 'menu1-2',
+  //           component: () => import('@/views/nested/menu1/menu1-2'),
+  //           name: 'Menu1-2',
+  //           meta: {title: 'Menu1-2'},
+  //           children: [
+  //             {
+  //               path: 'menu1-2-1',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+  //               name: 'Menu1-2-1',
+  //               meta: {title: 'Menu1-2-1'}
+  //             },
+  //             {
+  //               path: 'menu1-2-2',
+  //               component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+  //               name: 'Menu1-2-2',
+  //               meta: {title: 'Menu1-2-2'}
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           path: 'menu1-3',
+  //           component: () => import('@/views/nested/menu1/menu1-3'),
+  //           name: 'Menu1-3',
+  //           meta: {title: 'Menu1-3'}
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'menu2',
+  //       component: () => import('@/views/nested/menu2/index'),
+  //       meta: {title: 'menu2'}
+  //     }
+  //   ]
+  // },
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {path: '*', redirect: '/404', hidden: true}
 ]
 
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  mode: 'history', // require service support
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 })
 
