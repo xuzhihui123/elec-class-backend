@@ -203,7 +203,8 @@ export default {
           let d = await updateBpContent({
             msgId: this.msgId,
             title: this.editData.title,
-            msg: this.editData.msg
+            msg: this.editData.msg,
+            classCode:this.classCode
           });
           this.$message({
             type: "success",
@@ -233,7 +234,8 @@ export default {
           let d = await upload(f);
           let data = await updateBpContent({
             msgId: this.msgId,
-            imgUrl: d
+            imgUrl: d,
+            classCode:this.classCode
           });
           this.$message({
             type: "success",
@@ -265,7 +267,8 @@ export default {
           let d = await upload(f);
           let data = await updateBpContent({
             msgId: this.msgId,
-            mp4Url: d
+            mp4Url: d,
+            classCode:this.classCode
           });
           this.$message({
             type: "success",

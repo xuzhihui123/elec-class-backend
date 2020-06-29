@@ -35,6 +35,7 @@ export default {
   },
   data() {
     return {
+      schoolCode: null,
       loadingBtn: false,
       form: {
         name: "",
@@ -50,6 +51,9 @@ export default {
     };
   },
   methods: {
+    getSchoolCode() {
+      this.schoolCode = localStorage.getItem("Sn");
+    },
     getValue(value) {
       this.form.content = value;
     },
@@ -70,7 +74,7 @@ export default {
             let schoolEnd = time[1];
             try {
               let d = await insertSchoolNotice({
-                schoolCode: "GXLZ24",
+                schoolCode: this.schoolCode,
                 schoolTitle: name,
                 schoolContent: content,
                 schoolStart,
@@ -107,6 +111,9 @@ export default {
         }
       });
     }
+  },
+  created(){
+    this.getSchoolCode()
   }
 };
 </script>

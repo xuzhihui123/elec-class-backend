@@ -77,10 +77,15 @@ export default {
         limit: 5
       },
       //条数
-      total: 0
+      total: 0,
+      schoolCode:null
     };
   },
   methods: {
+    //获取schoolCode
+    getSchoolCode(){
+        this.schoolCode = localStorage.getItem('Sn')
+    },
     //编辑
     handleUpdate(id) {
       this.$router.push(`/home/editSchoolNotice/${id}`);
@@ -132,7 +137,7 @@ export default {
       let { page, limit } = this.listQuery;
       try {
         let d = await getNoticeList({
-          schoolCode: "GXLZ24",
+          schoolCode: this.schoolCode,
           pageNum: page,
           pageSize: limit
         });
@@ -155,6 +160,7 @@ export default {
     }
   },
   created() {
+    this.getSchoolCode()
     this.getList();
   }
 };

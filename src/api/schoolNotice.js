@@ -53,3 +53,4 @@ export function getNoticeById(noticeId) {
     }
   })
 }
+

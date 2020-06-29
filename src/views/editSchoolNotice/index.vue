@@ -7,6 +7,7 @@
         </el-form-item>
         <el-form-item label="选择时区：" prop="time">
           <el-date-picker
+            :disabled="true"
             v-model="form.time"
             type="datetimerange"
             value-format="yyyy-MM-dd HH:mm:ss"
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       schoolId: null,
+      schoolCode:null,
       loadingBtn: false,
       form: {
         name: "",
@@ -54,6 +56,9 @@ export default {
     };
   },
   methods: {
+    getSchoolCode(){
+        this.schoolCode = localStorage.getItem('Sn')
+    },
     getValue(value) {
       this.form.content = value;
     },
@@ -73,7 +78,7 @@ export default {
             let schoolEnd = time[1];
             try {
               let d = await updateSchoolNotice({
-                schoolCode: "GXLZ24",
+                schoolCode: this.schoolCode,
                 schoolId: this.schoolId,
                 schoolTitle: name,
                 schoolContent: content,
@@ -90,7 +95,7 @@ export default {
                 this.loadingBtn = false;
                 this.$message({
                   type: "success",
-                  message: "添加公告成功~"
+                  message: "编辑公告成功~"
                 });
                 this.$router.go(-1);
               }
@@ -134,6 +139,7 @@ export default {
     }
   },
   created() {
+    this.getSchoolCode()
     this.getDataById();
   }
 };

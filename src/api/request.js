@@ -7,7 +7,7 @@
 import  axios from 'axios'
 export function request(config,token) {
   const instance  = axios.create({
-     baseURL:'http://192.168.3.47:8080/'
+     baseURL:'http://121.204.146.196:9999'
   })
   instance.interceptors.request.use(config=>{
     if(token){

@@ -17,3 +17,14 @@ export function login(params) {
       params
     })
 }
+
+//学校登录
+
+//学校登录  /login/schoollogin
+export function schoollogin(params) {
+  return request1({
+    method: 'get',
+    url: '/login/schoollogin',
+    params
+  })
+}
